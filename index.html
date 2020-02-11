@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>ahmetozer.org easy vpn install</title>
+    <script src="https://install.ahmetozer.org/assets/js/jquery.min.js"></script>
+    <script src="https://install.ahmetozer.org/assets/js/bootstrap.js"></script>
+    <script src="https://install.ahmetozer.org/assets/js/aes.js"></script>
+    <script src="https://install.ahmetozer.org/assets/js/hmac-sha256.js"></script>
+    <link rel="stylesheet" href="https://install.ahmetozer.org/assets/css/bootstrap.min.css" />
+  </head>
+
+  <body class="bg-light">
+    <div class="container">
+      <div style="overflow: auto;">
+        	<a href="https://www.vultr.com/?ref=7029743" >
+				<picture>
+					<source srcset="https://www.vultr.com/media/banner_3.png" media="(max-width: 600px)">
+					<img src="https://www.vultr.com/media/banner_1.png" style="max-width:100%;height:auto;"  class="centered">
+				</picture>
+			</a>
+			<a href="https://m.do.co/c/cdad8af559e9">
+				<picture>
+					<source srcset="https://install.ahmetozer.org/assets/images/DO_Logo_icon_blue.png" media="(max-width: 600px)">
+					<img src="https://install.ahmetozer.org/assets/images/DO_Logo_Horizontal_Blue.png" style="max-width:100%;height:auto;" class="centered">
+				</picture>
+			</a>
+	  </div>
+      <div class="bosluk"></div>
+      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+		<li class="nav-item">
+          <a class="nav-link" href="/" id="pills-contact-tab"  role="tab" aria-controls="pills-contact" aria-selected="false">🏠</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Get OVPN file via key service</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Install VPN Server</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/ahmetozer_org" id="pills-contact-tab"  role="tab" aria-controls="pills-contact" aria-selected="false">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://ahmetozer.org/OpenVPN-Server-Install-Software.html" id="pills-contact-tab"  role="tab" aria-controls="pills-contact" aria-selected="false">English Guide</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.dijitaller.com/vpn-sunucusu-nasil-kurulur/" id="pills-contact-tab"  role="tab" aria-controls="pills-contact" aria-selected="false">Türkçe Rehber</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+          <h2>Downloan OVPN File</h2>
+          <div class="row">
+            <div class="col-md">
+              <label for="ip">Server Ip address</label>
+              <input type="text" name="ip" class="form-control" aria-describedby="ipHelp" placeholder="Enter server ip address" maxlength="16" id="ip" pattern="^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$" title="Please write your server ip address" required>
+              <small id="ipHelp" class="form-text text-muted">We'll never share your ip address with anyone else.</small>
+            </div>
+            <div class="col-md">
+              <label for="pass">Server Password</label>
+              <input type="text" name="pass" class="form-control" aria-describedby="passHelp" placeholder="Password" pattern=".{11}"  maxlength="11" id="pass" title="Please write your ovpn password" autocomplete="off" required>
+              <small id="passlHelp" class="form-text text-muted">The password is used to decrypt the encrypted data in the browser. No password information can be output outside the browser.</small>
+            </div class="col-md">
+          </div>
+          <div class="row">
+            <div class="col-md margin1">
+              <button onclick="vpnform()" class="btn btn-primary buttonmargin">Connect to server</button><div class="loading"></div>
+              <button id="ShowKey" class="btn btn-primary after buttonmargin" onclick="showkeyfnk()">Show ovpn</button>
+              <button id="Download" class="btn btn-primary after buttonmargin" onclick="downloadfnk()">Download ovpn</button>
+              <button id="shutdown" class="btn btn-dark after buttonmargin" onclick="shutdownfnk()">Shutdown key service</button>
+            </div>
+          </div> </br>
+          <div class="row">
+            <div class="col-md">
+              <div class="alert alert-primary" role="alert" id="status"></div>
+            </div>
+          </div>
+          <div id="result"></div>
+        </div>
+        <script src="https://install.ahmetozer.org/vpn/vpn-server.js"></script>
+        <link rel="stylesheet" href="https://install.ahmetozer.org/assets/css/install.css" />
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+          <h2>How to install vpn server</h2>
+          <p>You need a VPS with Ubuntu 18.04 installed to set up the VPN server. You can get this VPS server from the company you want. If you will get from Vultr, you can also support us by clicking on the above picture.</p>
+          <div class="row">
+            <div class="col">
+              <label for="porttype">Please select your protocol</label>
+              <select class="form-control" id="porttype" onchange="installcommandgenerator()">
+                <option name="udp">udp</option>
+                <option name="tcp" selected>tcp</option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="portnumber">Port number</label>
+              <input type="number" min="1" max="65535" class="form-control" id="portnumber" placeholder="443" value="443" onchange="installcommandgenerator()">
+            </div>
+            <div class="col-6">
+              <label for="devicetype">Please select virtual network kernel interface</label>
+              <select class="form-control" id="devicetype" onchange="installcommandgenerator()">
+                <option name="tap">tap</option>
+                <option name="tun" selected>tun</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md">
+              <label for="exampleFormControlTextarea1">Install code</label>
+              <pre class="form-control" id="codearea" rows="3" >
+              <div>wget https://install.ahmetozer.org/vpn/vpn.sh</div>
+              <div>chmod 755 vpn.sh</div>
+              <div id="command">sudo ./vpn.sh fast-install tcp 443 tun</div>
+              </pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="centered">
+      <script src="https://asciinema.org/a/d744amPt13FwWsw4xcZAQEfOo.js" id="asciicast-d744amPt13FwWsw4xcZAQEfOo" async></script>
+      </div>
+      <p>Tüm verileriniz sunucunuz ile tarayıcı arasında AES olarak şifrelenmektedir.</p>
+      <p>All your data is encrypted as AES between your server and the browser.</p>
+      <a class="nav-link" href="https://ahmetozer.org/products.html" id="pills-contact-tab"  role="tab" aria-controls="pills-contact" aria-selected="false">More products like a this</a>
+      <a class="nav-link" href="https://ahmetozer.org" id="pills-contact-tab"  role="tab" aria-controls="pills-contact" aria-selected="false">ahmetozer.org (Blog)</a>
+      <div class="row">
+        <div class="centered" ><a href="https://twitter.com/ahmetozer_org">Would you like your ad to be here?</a></div>
+      </div>
+    </div>
+  </body>
+</html>
